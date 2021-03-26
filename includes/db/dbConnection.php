@@ -1,8 +1,9 @@
 <?php
-    $server = 'localhost';
-    $username = 'dev';
-    $password = 'Dev1234$';
-    $dbName = 'MarcellTanure_Portfolio';
+    //remotemysql.com
+    $server = 'remotemysql.com';
+    $username = 'TyZShYLZqQ';
+    $password = 'hAd45jczoE$';
+    $dbName = 'TyZShYLZqQ';
 
     $dbLink = new mysqli($server, $username, $password, $dbName);
 

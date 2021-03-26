@@ -11,12 +11,7 @@
         $project = $_GET['project'];
 
         if(isset($_GET['edit']) && $project == 'true') {
-            $server = 'localhost';
-            $username = 'dev';
-            $password = 'Dev1234$';
-            $dbName = 'MarcellTanure_Portfolio';
-
-            $dbLink = new mysqli($server, $username, $password, $dbName);
+            connect($dbName);
             $projectId = $_GET['edit'];
             $update = true;
             $result = $dbLink->query("SELECT * FROM project WHERE projectId=$projectId") or die($dbLink->error);
@@ -63,12 +58,7 @@
 
                                     <!-- Dropdown -->
                                     <?php
-                                    $server = 'localhost';
-                                    $username = 'dev';
-                                    $password = 'Dev1234$';
-                                    $dbName = 'MarcellTanure_Portfolio';
-                        
-                                    $dbLink = new mysqli($server, $username, $password, $dbName);
+                                    connect($dbName);
                                     $dropdownsql = "SELECT categoryId, categoryName, type FROM category WHERE type = 2 ORDER BY categoryName";
                                     $dropdownResult = $dbLink ->query($dropdownsql);
                                     ?>       
@@ -113,12 +103,7 @@
                     </main>
         <?php
         } else {
-            $server = 'localhost';
-            $username = 'dev';
-            $password = 'Dev1234$';
-            $dbName = 'MarcellTanure_Portfolio';
-
-            $dbLink = new mysqli($server, $username, $password, $dbName);
+            connect($dbName);
             $postId = $_GET['edit'];
             $update = true;
             $result = $dbLink->query("SELECT * FROM posts WHERE postId=$postId") or die($dbLink->error);
@@ -159,12 +144,7 @@
 
                                     <!-- Dropdown -->
                                     <?php
-                                    $server = 'localhost';
-                                    $username = 'dev';
-                                    $password = 'Dev1234$';
-                                    $dbName = 'MarcellTanure_Portfolio';
-                        
-                                    $dbLink = new mysqli($server, $username, $password, $dbName);
+                                    connect($dbName);
                                     $dropdownsql = "SELECT categoryId, categoryName, type FROM category WHERE type = 1 ORDER BY categoryName";
                                     $dropdownResult = $dbLink ->query($dropdownsql);
                                     ?>       

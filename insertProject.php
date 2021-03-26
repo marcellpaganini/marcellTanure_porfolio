@@ -93,12 +93,7 @@
 
                     <!-- Dropdown -->
                     <?php
-                    $server = 'localhost';
-                    $username = 'dev';
-                    $password = 'Dev1234$';
-                    $dbName = 'MarcellTanure_Portfolio';
-        
-                    $dbLink = new mysqli($server, $username, $password, $dbName);
+                    connect($dbName);
                     $dropdownsql = "SELECT categoryId, categoryName, type FROM category WHERE type = 2 ORDER BY categoryName";
                     $dropdownResult = $dbLink ->query($dropdownsql);
                     ?>       
@@ -143,7 +138,7 @@
                         $categoryId = $_POST['category'];
 
                         if(!empty($projectTitle) && !empty($projectDesc) && !empty($projectImage) && !empty($projectImage2) && !empty($projectImage3) && !empty($authorId) && $categoryId > 0){
-                            $dbLink = connect('MarcellTanure_Portfolio');
+                            connect($dbName);
                             $msg = insertProject($dbLink, $projectTitle, $projectDesc, $projectImage, $projectImage2, $projectImage3, $authorId, $categoryId);
                             echo $msg;
                             $dbLink->close();

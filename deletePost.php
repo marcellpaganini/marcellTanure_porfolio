@@ -10,12 +10,8 @@ $pageTitle = "Delete";
                     <h2>Delete Post</h2> <br />   
                     <p>
                         <?php
-                        $server = 'localhost';
-                        $username = 'dev';
-                        $password = 'Dev1234$';
-                        $dbName = 'MarcellTanure_Portfolio';
-
-                        $dbLink = new mysqli($server, $username, $password, $dbName);
+                        connect($dbName);
+                        
                         $project = $_GET['project'];
 
                         if(isset($_GET['delete']) && $project == 'true') {

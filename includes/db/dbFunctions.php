@@ -1,6 +1,6 @@
 <?php
     function connect($dbName){
-        $dbLink = new mysqli('localhost', 'dev', 'Dev1234$', $dbName)
+        $dbLink = new mysqli('remotemysql.com', 'TyZShYLZqQ', 'hAd45jczoE', $dbName)
         or die("There is a problem connecting to the database");
         return $dbLink;
     }
@@ -39,7 +39,7 @@
 
 <?php 
     if (isset($_POST['update'])) {
-        $dbLink = connect('MarcellTanure_Portfolio');
+        connect($dbName);
 
         $postId = $_POST['postId'];
         $postTitle = $_POST['postTitle'];
@@ -56,7 +56,7 @@
     }
 
     if (isset($_POST['updateProject'])) {
-        $dbLink = connect('MarcellTanure_Portfolio');
+        connect($dbName);
 
         $projectId = $_POST['projectId'];
         $projectTitle = $_POST['projectTitle'];
@@ -76,7 +76,7 @@
 
 <?php
         if(isset($_POST['delete'])) {
-            $dbLink = connect('MarcellTanure_Portfolio');
+            connect($dbName);
             $postId = $_POST['postId'];     
 
             $dbLink->query("DELETE FROM posts WHERE postId=$postId") or die($mysqli->error());
@@ -86,7 +86,7 @@
         }
 
         if(isset($_POST['deleteProject'])) {
-            $dbLink = connect('MarcellTanure_Portfolio');
+            connect($dbName);
             $projectId = $_POST['projectId'];     
 
             $dbLink->query("DELETE FROM project WHERE projectId=$projectId") or die($mysqli->error());
