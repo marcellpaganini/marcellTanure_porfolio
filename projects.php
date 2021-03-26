@@ -33,9 +33,13 @@ $pageTitle = "Projects";
 
             if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $search = $_POST['projectSearch'];
+                $sql = "SELECT projectId, projectTitle,projectDate, projectImage, category.categoryId, categoryName
+                FROM project
+                INNER JOIN category ON  project.categoryId = category.categoryId
+                WHERE categoryName LIKE '%$search%';";
 
                 if(!empty($search)){
-                    if($result = $dbLink->query("CALL projectSearch('$search')")){
+                    if($result = $dbLink->query($sql)){
                         ?>
                         <div class="table">
                           <table class="table table-borderless">
@@ -46,7 +50,7 @@ $pageTitle = "Projects";
                                       <div class="card" style="margin: 0 auto; padding: 0%;">
                                         <div class="card-header">
                                         <strong><?php echo $row['projectTitle']; ?></strong>
-                                      <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "delon" ||  $_SESSION['userName'] == "marcell")) { ?>
+                                      <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "marcell")) { ?>
                                         <br /><a href="updatePost.php?edit=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Update</a>
                                         <a href="deletePost.php?delete=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Delete</a>
                                       <?php } ?>
@@ -105,7 +109,7 @@ $pageTitle = "Projects";
                             <div class="card" style="margin: 0 auto; padding: 0%;">
                               <div class="card-header">
                               <strong><?php echo $row['projectTitle']; ?></strong>
-                            <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "delon" ||  $_SESSION['userName'] == "marcell")) { ?>
+                            <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "marcell")) { ?>
                               <br /><a href="updatePost.php?edit=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Update</a>
                               <a href="deletePost.php?delete=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Delete</a>
                             <?php } ?>
@@ -152,7 +156,7 @@ $pageTitle = "Projects";
                             <div class="card" style="margin: 0 auto; padding: 0%;">
                               <div class="card-header">
                               <strong><?php echo $row['projectTitle']; ?></strong>
-                            <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "delon" ||  $_SESSION['userName'] == "marcell")) { ?>
+                            <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "marcell")) { ?>
                               <br /><a href="updatePost.php?edit=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Update</a>
                               <a href="deletePost.php?delete=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Delete</a>
                             <?php } ?>

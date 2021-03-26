@@ -2,7 +2,6 @@
     $pageTitle = "Posts";
     include 'includes/header.php';
     include 'includes/db/openConnection.php';
-    error_reporting(0);
 ?>
 <body>
     <main id="main">
@@ -32,9 +31,13 @@
 
                         if($_SERVER['REQUEST_METHOD'] == "POST") {
                             $search = $_POST['simpleSearch'];
+                            $sql = "SELECT authors.authorId, firstName,lastName, postId, post_date, postTitle,teaser, content, postImage 
+                            FROM authors
+                            INNER JOIN posts ON  authors.authorId = posts.authorId
+                            WHERE postTitle LIKE '%$search%' OR teaser LIKE '%$search%';";
 
                             if(!empty($search)){
-                                if($result = $dbLink->query("CALL simpleSearch('$search')")){
+                                if($result = $dbLink->query($sql)){
                                     ?>
                                     <table class="table">
                                             <tbody>
@@ -44,7 +47,7 @@
 
                                             <tr style="height:1px; margin:0%">
                                             <td style="height: inherit; border: 0px; width: 100px;"><img src="assets/img/<?php echo $row['postImage'] ?>" class="img-thumbnail"><br /><br />
-                                            <?php if($_SESSION['userName'] == "delon" ||  $_SESSION['userName'] == "marcell") { ?>
+                                            <?php if(isset($_SESSION['userName']) &&  ($_SESSION['userName'] == "marcell")) { ?>
                                             <a href="updatePost.php?edit=<?php echo $row['postId']; ?>&project=false" class="btn btn-secondary btn-sm">Update</a>
                                             <a href="deletePost.php?delete=<?php echo $row['postId']; ?>&project=false" class="btn btn-secondary btn-sm">Delete</a>
                                             <?php } ?>
@@ -77,17 +80,11 @@
                                       </div>";
                             }
                         }else{
-                            if ($_SESSION['userName'] == "delon"):
+                            if (isset($_SESSION['userName']) && $_SESSION['userName'] == "marcell"):
                                 $sql = "SELECT authors.authorId, firstName, lastName, postId, post_date, postTitle, teaser, content, postImage 
                                         FROM authors 
                                         INNER JOIN posts ON authors.authorId = posts.authorId
-                                        AND authors.authorId = 1
-                                        ORDER BY post_date DESC;";
-                            elseif ($_SESSION['userName'] == "marcell"):
-                                $sql = "SELECT authors.authorId, firstName, lastName, postId, post_date, postTitle, teaser, content, postImage 
-                                        FROM authors 
-                                        INNER JOIN posts ON authors.authorId = posts.authorId
-                                        AND authors.authorId = 2 
+                                        AND authors.authorId = 2
                                         ORDER BY post_date DESC;";
                             else:
                                 $sql = "SELECT authors.authorId, firstName, lastName, postId, post_date, postTitle, teaser, content, postImage 
@@ -135,7 +132,7 @@
     
                                         <tr style="height:1px; margin:0%">
                                         <td style="height: inherit; border: 0px; width: 100px;"><img src="assets/img/<?php echo $row['postImage'] ?>" class="img-thumbnail"><br /><br />
-                                        <?php if($_SESSION['userName'] == "delon" ||  $_SESSION['userName'] == "marcell") { ?>
+                                        <?php if(isset($_SESSION['userName']) &&  $_SESSION['userName'] == "marcell") { ?>
                                         <a href="updatePost.php?edit=<?php echo $row['postId']; ?>&project=false" class="btn btn-secondary btn-sm">Update</a>
                                         <a href="deletePost.php?delete=<?php echo $row['postId']; ?>&project=false" class="btn btn-secondary btn-sm">Delete</a>
                                         <?php } ?>
@@ -174,11 +171,9 @@
                                 ?>
 
                         <?php
+                        $result->close();
+                        $dbLink->close();   
                         }
-
-                    $result->close();
-                    $dbLink->close();
-        
                     ?>
 
                 </div>

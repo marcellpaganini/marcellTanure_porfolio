@@ -39,7 +39,7 @@
 
 <?php 
     if (isset($_POST['update'])) {
-        connect($dbName);
+        $dbLink = connect("TyZShYLZqQ");
 
         $postId = $_POST['postId'];
         $postTitle = $_POST['postTitle'];
@@ -56,7 +56,7 @@
     }
 
     if (isset($_POST['updateProject'])) {
-        connect($dbName);
+        $dbLink = connect("TyZShYLZqQ");
 
         $projectId = $_POST['projectId'];
         $projectTitle = $_POST['projectTitle'];
@@ -76,7 +76,7 @@
 
 <?php
         if(isset($_POST['delete'])) {
-            connect($dbName);
+            connect("TyZShYLZqQ");
             $postId = $_POST['postId'];     
 
             $dbLink->query("DELETE FROM posts WHERE postId=$postId") or die($mysqli->error());
@@ -86,7 +86,7 @@
         }
 
         if(isset($_POST['deleteProject'])) {
-            connect($dbName);
+            $dbLink = connect("TyZShYLZqQ");
             $projectId = $_POST['projectId'];     
 
             $dbLink->query("DELETE FROM project WHERE projectId=$projectId") or die($mysqli->error());

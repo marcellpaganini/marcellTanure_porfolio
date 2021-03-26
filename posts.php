@@ -16,13 +16,8 @@
                         if(isset($_GET['id'])){
 
                             $postId = $_GET['id'];
-                            if ($_SESSION['userName'] == "delon"):
-                                $sql = "SELECT authors.authorId, firstName, lastName, postId, post_date, postTitle, content, postImage 
-                                        FROM authors 
-                                        INNER JOIN posts ON authors.authorId = posts.authorId
-                                        AND authors.authorId = 1
-                                        WHERE posts.postId = $postId;";
-                            elseif ($_SESSION['userName'] == "marcell"):
+                            
+                            if ($_SESSION['userName'] == "marcell"):
                                 $sql = "SELECT authors.authorId, firstName, lastName, postId, post_date, postTitle, content, postImage 
                                         FROM authors 
                                         INNER JOIN posts ON authors.authorId = posts.authorId
@@ -48,7 +43,7 @@
                     ?>
                     <div><h4><?php echo $row['postTitle']; ?></h4>
 
-                    <?php if($_SESSION['userName'] == "delon" ||  $_SESSION['userName'] == "marcell") { ?>
+                    <?php if($_SESSION['userName'] == "marcell") { ?>
                     <a href="updatePost.php?edit=<?php echo $row['postId']; ?>&project=false" class="btn btn-secondary btn-sm">Update</a>
                     <a href="deletePost.php?delete=<?php echo $row['postId']; ?>&project=false" class="btn btn-secondary btn-sm">Delete</a>
                     <?php } ?>

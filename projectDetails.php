@@ -25,7 +25,7 @@ $pageTitle = "Project Details";
 
                 <h1><?php echo $row['projectTitle']; ?></h1>
 
-                <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "delon" ||  $_SESSION['userName'] == "marcell")) { ?>
+                <?php if(isset($_SESSION['userName']) && $_SESSION['userName'] == "marcell") { ?>
                     <a href="updatePost.php?edit=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Update</a>
                     <a href="deletePost.php?delete=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Delete</a>
                 <?php } ?>

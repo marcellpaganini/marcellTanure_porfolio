@@ -22,7 +22,7 @@ $pageTitle = "Login";
                                 // Store escaped $_POST values in variables
                                 $uName = htmlentities($_POST['userName']);
                                 $password = htmlentities($_POST['password']);
-                                if(($uName == "delon" && $password == secret) || ($uName == "marcell" && $password == secret)) {
+                                if(($uName == "marcell" && $password == "secret")) {
                                     $_SESSION['userName'] = $uName;
                                     $_SESSION['password'] = $password;
                                 echo "Thanks for logging in <strong>", $uName, "</strong>";
@@ -53,9 +53,9 @@ $pageTitle = "Login";
 
                                 <form action="login.php" class="row g-3" method="post">
                                     <label for="userName">Username:</label>
-                                    <input type="text" class="form-control" name="userName" placeholder="Ex: delon"/> <br />
+                                    <input type="text" class="form-control" name="userName"/> <br />
                                     <label for="password">Password:</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Enter you 'secret' password"/>
+                                    <input type="password" class="form-control" name="password"/>
                                     <div style= "color:white;"> BLANK <div>
                                     <input class="btn btn-secondary" type="submit" value="Login" />
                                 </form>

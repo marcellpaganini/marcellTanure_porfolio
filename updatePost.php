@@ -11,7 +11,12 @@
         $project = $_GET['project'];
 
         if(isset($_GET['edit']) && $project == 'true') {
-            connect($dbName);
+            $server = 'remotemysql.com';
+            $username = 'TyZShYLZqQ';
+            $password = 'hAd45jczoE';
+            $dbName = 'TyZShYLZqQ';
+
+            $dbLink = new mysqli($server, $username, $password, $dbName);
             $projectId = $_GET['edit'];
             $update = true;
             $result = $dbLink->query("SELECT * FROM project WHERE projectId=$projectId") or die($dbLink->error);
@@ -58,7 +63,12 @@
 
                                     <!-- Dropdown -->
                                     <?php
-                                    connect($dbName);
+                                    $server = 'remotemysql.com';
+                                    $username = 'TyZShYLZqQ';
+                                    $password = 'hAd45jczoE';
+                                    $dbName = 'TyZShYLZqQ';
+                        
+                                    $dbLink = new mysqli($server, $username, $password, $dbName);
                                     $dropdownsql = "SELECT categoryId, categoryName, type FROM category WHERE type = 2 ORDER BY categoryName";
                                     $dropdownResult = $dbLink ->query($dropdownsql);
                                     ?>       
@@ -103,7 +113,12 @@
                     </main>
         <?php
         } else {
-            connect($dbName);
+            $server = 'remotemysql.com';
+            $username = 'TyZShYLZqQ';
+            $password = 'hAd45jczoE';
+            $dbName = 'TyZShYLZqQ';
+
+            $dbLink = new mysqli($server, $username, $password, $dbName);
             $postId = $_GET['edit'];
             $update = true;
             $result = $dbLink->query("SELECT * FROM posts WHERE postId=$postId") or die($dbLink->error);
@@ -144,7 +159,12 @@
 
                                     <!-- Dropdown -->
                                     <?php
-                                    connect($dbName);
+                                    $server = 'remotemysql.com';
+                                    $username = 'TyZShYLZqQ';
+                                    $password = 'hAd45jczoE';
+                                    $dbName = 'TyZShYLZqQ';
+                        
+                                    $dbLink = new mysqli($server, $username, $password, $dbName);
                                     $dropdownsql = "SELECT categoryId, categoryName, type FROM category WHERE type = 1 ORDER BY categoryName";
                                     $dropdownResult = $dbLink ->query($dropdownsql);
                                     ?>       
