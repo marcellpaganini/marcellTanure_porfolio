@@ -88,6 +88,52 @@ $pageTitle = "Projects";
                           </div>";
                 }
             } else {
+                $sql = "SELECT projectId, projectTitle, projectDate, projectImage 
+                        FROM project 
+                        WHERE projectId = 9 OR projectId = 10";
+                
+                $result = $dbLink ->query($sql);
+
+              ?>
+                <div class="table">
+                <table class="table table-borderless">
+                  <tbody>  
+                        <tr>
+                      <?php while($row = $result->fetch_assoc()) { ?>
+                        <td>
+                            <div class="card" style="margin: 0 auto; padding: 0%;">
+                              <div class="card-header">
+                              <strong><?php echo $row['projectTitle']; ?></strong>
+                            <?php if(isset($_SESSION['userName']) && ($_SESSION['userName'] == "marcell")) { ?>
+                              <br /><a href="updatePost.php?edit=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Update</a>
+                              <a href="deletePost.php?delete=<?php echo $row['projectId']; ?>&project=true" class="btn btn-secondary btn-sm">Delete</a>
+                            <?php } ?>
+
+                              <div style= "color:white;"> - </div>
+
+                            <?php 
+                              $date = strtotime($row['projectDate']);
+                            ?>
+                              </div>
+                              <div class="card-body">
+                              <?php print date("F jS Y", $date); ?><br />
+                                <a href="projectDetails.php?id=<?php echo $row['projectId']; ?>">
+                                  <div class="portfolio">
+                                    <div class="portfolio-wrap">
+                                      <img src="assets/img/<?php echo $row['projectImage'] ?>" class="rounded mx-auto d-block img-fluid hover-zoom">
+                                    </div>
+                                  </div>  
+                                </a><br />
+                              </div>
+                        </div>
+                        </td>
+                      <?php }?>  
+                        </tr>
+                      
+                  </tbody>
+                </table> 
+                </div>
+              <?php
               $sql = "SELECT projectId, projectTitle, projectDate, projectImage 
                         FROM project 
                         WHERE projectId = 7 OR projectId = 8";
@@ -140,11 +186,16 @@ $pageTitle = "Projects";
                 </div>
 
                 <?php
-                $sql = "SELECT projectId, projectTitle, projectDate, projectImage 
+              $sql = "SELECT projectId, projectTitle, projectDate, projectImage 
                         FROM project 
-                        WHERE projectId = 9 OR projectId = 4";
+                        WHERE projectId = 3 OR projectId = 4";
                 
                 $result = $dbLink ->query($sql);
+
+                function n12br2($string) {
+                    $string = str_replace(array("\\r\\n", "\\r", "\\n"), "<br />", $string);
+                    return $string;
+                }
 
               ?>
                 <div class="table">
