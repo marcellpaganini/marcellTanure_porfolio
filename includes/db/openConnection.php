@@ -1,9 +1,9 @@
 <?php
     //Prod
-    $server = 'remotemysql.com';
-    $username = 'TyZShYLZqQ';
-    $password = 'hAd45jczoE';
-    $dbName = 'TyZShYLZqQ';
+    $server = 'sql5.freemysqlhosting.net';
+    $username = 'sql5425220';
+    $password = 'b9XgfLlkMk';
+    $dbName = 'sql5425220';
 
     //Dev
     // $server = 'localhost';

@@ -89,10 +89,10 @@
 
                     <!-- Dropdown -->
                     <?php
-                    $server = 'remotemysql.com';
-                    $username = 'TyZShYLZqQ';
-                    $password = 'hAd45jczoE';
-                    $dbName = 'TyZShYLZqQ';
+                    $server = 'sql5.freemysqlhosting.net';
+                    $username = 'sql5425220';
+                    $password = 'b9XgfLlkMk';
+                    $dbName = 'sql5425220';
         
                     $dbLink = new mysqli($server, $username, $password, $dbName);
                     $dropdownsql = "SELECT categoryId, categoryName, type FROM category WHERE type = 1 ORDER BY categoryName";
@@ -142,7 +142,7 @@
                         $categoryId = $_POST['category'];
 
                         if(!empty($postTitle) && !empty($teaser) && !empty($content) && !empty($authorId) && !empty($postImage) && $categoryId > 0){
-                            $dbLink = connect('TyZShYLZqQ');
+                            $dbLink = connect('sql5425220');
                             $msg = insertPost($dbLink, $postTitle, $teaser, $content, $postImage, $authorId, $categoryId);
                             echo $msg;
                             $dbLink->close();

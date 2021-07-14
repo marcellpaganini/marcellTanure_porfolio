@@ -10,10 +10,10 @@ $pageTitle = "Delete";
                     <h2>Delete Post</h2> <br />   
                     <p>
                         <?php
-                        $server = 'remotemysql.com';
-                        $username = 'TyZShYLZqQ';
-                        $password = 'hAd45jczoE';
-                        $dbName = 'TyZShYLZqQ';
+                        $server = 'sql5.freemysqlhosting.net';
+                        $username = 'sql5425220';
+                        $password = 'b9XgfLlkMk';
+                        $dbName = 'sql5425220';
 
                         $dbLink = new mysqli($server, $username, $password, $dbName);
                         

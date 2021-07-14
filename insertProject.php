@@ -93,10 +93,10 @@
 
                     <!-- Dropdown -->
                     <?php
-                    $server = 'remotemysql.com';
-                    $username = 'TyZShYLZqQ';
-                    $password = 'hAd45jczoE';
-                    $dbName = 'TyZShYLZqQ';
+                    $server = 'sql5.freemysqlhosting.net';
+                    $username = 'sql5425220';
+                    $password = 'b9XgfLlkMk';
+                    $dbName = 'sql5425220';
         
                     $dbLink = new mysqli($server, $username, $password, $dbName);
                     $dropdownsql = "SELECT categoryId, categoryName, type FROM category WHERE type = 2 ORDER BY categoryName";
@@ -143,7 +143,7 @@
                         $categoryId = $_POST['category'];
 
                         if(!empty($projectTitle) && !empty($projectDesc) && !empty($projectImage) && !empty($projectImage2) && !empty($projectImage3) && !empty($authorId) && $categoryId > 0){
-                            $dbLink = connect('TyZShYLZqQ');
+                            $dbLink = connect('sql5425220');
                             $msg = insertProject($dbLink, $projectTitle, $projectDesc, $projectImage, $projectImage2, $projectImage3, $authorId, $categoryId);
                             echo $msg;
                             $dbLink->close();
